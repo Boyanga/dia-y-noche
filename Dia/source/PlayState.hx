@@ -4,12 +4,14 @@ import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.addons.display.FlxExtendedSprite;
+import flixel.system.FlxSound;
 import flixel.text.FlxText;
 import flixel.tile.FlxTilemap;
 import flixel.ui.FlxButton;
 import flixel.math.FlxMath;
 import flixel.addons.editors.ogmo.FlxOgmoLoader;
 import Personaje;
+import flixel.system.FlxAssets.FlxSoundAsset;
 
 class PlayState extends FlxState
 {
@@ -20,6 +22,11 @@ class PlayState extends FlxState
 	private var rapido2:FlxSprite;
 	private var punto:FlxSprite;
 	private var personaje:Personaje;
+	
+	
+		//Background music variables.
+	private var bgm:FlxSound;
+	private var bgmClip:FlxSoundAsset = AssetPaths.Tropical_House_1__ogg;
 	override public function create():Void
 	{
 		super.create();
@@ -29,6 +36,21 @@ class PlayState extends FlxState
 		cosas = loader.loadTilemap(AssetPaths.cosas__png, 32, 32, "cosas");
 		
 		loader.loadEntities(posicion, "personaje");
+	//	bgm = new FlxSound();
+		//bgm.loadEmbedded(AssetPaths.Tropical_House_1__ogg, true);
+	//	add(bgm);
+	///	bgm.play();
+		
+		
+		
+		
+	//En el create
+		bgm = new FlxSound();
+		bgm.loadEmbedded(bgmClip, true);
+		bgm.play();
+		add(bgm);
+		
+		
 		punto = new FlxSprite();
 		punto.visible = false;
 		add(tilemap);
